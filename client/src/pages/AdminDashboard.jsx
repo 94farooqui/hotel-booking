@@ -15,9 +15,9 @@ const AdminDashboard = () => {
   return (
     <div>
       <Navbar />
-      <div className="container mx-auto my-10">
+      <div className="container mx-auto my-8 w-[1000px] max-w-[1000px] ">
         <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
-        <div className="space-y-10">
+        <div className="w-full space-y-10">
           <ManageHotels />
           <ManageRooms />
           <ViewBookings />

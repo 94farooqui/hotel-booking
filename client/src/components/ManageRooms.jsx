@@ -4,6 +4,7 @@ import { getRoomsByHotel, addRoom, deleteRoom } from './../api/booking';
 const ManageRooms = () => {
   const [hotelId, setHotelId] = useState('');
   const [rooms, setRooms] = useState([]);
+  const [addNewRoom,setAddNewRoom] = useState(false)
   const [newRoom, setNewRoom] = useState({ roomType: '', price: '', features: '' });
 
   useEffect(() => {
@@ -41,41 +42,67 @@ const ManageRooms = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-4">Manage Rooms</h2>
-      <input
-        type="text"
-        placeholder="Hotel ID"
-        value={hotelId}
-        onChange={(e) => setHotelId(e.target.value)}
-        className="p-2 border mb-4 block"
-      />
-      <div className="mb-6">
-        <input
-          type="text"
-          placeholder="Room Type"
-          value={newRoom.roomType}
-          onChange={(e) => setNewRoom({ ...newRoom, roomType: e.target.value })}
-          className="p-2 border mr-2"
-        />
-        <input
-          type="text"
-          placeholder="Price"
-          value={newRoom.price}
-          onChange={(e) => setNewRoom({ ...newRoom, price: e.target.value })}
-          className="p-2 border mr-2"
-        />
-        <input
-          type="text"
-          placeholder="Features (comma-separated)"
-          value={newRoom.features}
-          onChange={(e) => setNewRoom({ ...newRoom, features: e.target.value })}
-          className="p-2 border mr-2"
-        />
-        <button onClick={handleAddRoom} className="bg-blue-600 text-white px-4 py-2">
-          Add Room
+    <div className="w-full">
+      <div className="flex w-fill justify-between items-center bg-indigo-400 p-4 rounded-md">
+        <h2 className="text-2xl font-bold text-white">Manage Rooms</h2>
+        <button
+          onClick={() => setAddNewRoom(true)}
+          className="bg-white rounded-md text-indigo-500  px-2 py-1 font-semibold"
+        >
+          Add New
         </button>
       </div>
+
+      {addNewRoom && (
+        <form className="my-6 grid grid-cols-2 gap-4">
+          <input
+            type="text"
+            placeholder="Hotel ID"
+            value={hotelId}
+            onChange={(e) => setHotelId(e.target.value)}
+            className="col-span-2 p-2 border block"
+          />
+
+          <input
+            type="text"
+            placeholder="Room Type"
+            value={newRoom.roomType}
+            onChange={(e) =>
+              setNewRoom({ ...newRoom, roomType: e.target.value })
+            }
+            className="p-2 border mr-2"
+          />
+          <input
+            type="text"
+            placeholder="Price"
+            value={newRoom.price}
+            onChange={(e) => setNewRoom({ ...newRoom, price: e.target.value })}
+            className="p-2 border mr-2"
+          />
+
+          <input
+            type="text"
+            placeholder="Features (comma-separated)"
+            value={newRoom.features}
+            onChange={(e) =>
+              setNewRoom({ ...newRoom, features: e.target.value })
+            }
+            className="col-span-2 p-2 border mr-2"
+          />
+          <button
+            onClick={()=>setAddNewRoom(false)}
+            className=" btn-primary  px-4 py-2"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={handleAddRoom}
+            className=" btn-secondary  px-4 py-2"
+          >
+            Save
+          </button>
+        </form>
+      )}
       <ul>
         {rooms.map((room) => (
           <li key={room._id} className="border p-2 mb-2 flex justify-between">
