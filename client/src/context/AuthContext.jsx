@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = (token) => {
     const userData = JSON.parse(atob(token.split('.')[1])); // Decode JWT
+    if(userData) console.log("Extracted from token",userData)
     setUser(userData);
     localStorage.setItem('token', token);
     navigate('/');

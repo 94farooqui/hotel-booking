@@ -17,6 +17,10 @@ const ViewBookings = () => {
     fetchBookings();
   }, []);
 
+  if(bookings.length <1){
+    return <p>No bookings</p>
+  }
+
   return (
     <div>
       <h2 className="text-2xl font-bold mb-4">View Bookings</h2>

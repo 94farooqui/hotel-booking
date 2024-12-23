@@ -10,6 +10,6 @@ export const deleteRoom = () => {
 
 }
 
-export const getBookings = () => {
-    
+export const getBookings = async () => {
+    return []
 }
