@@ -4,6 +4,7 @@
 
 body {
   overscroll-behavior: none;
+  background-color: rgb(238 242 255);
 }
 
 /* Change the scrollbar width */

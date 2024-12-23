@@ -26,7 +26,7 @@ const AdminNavbar = () => {
   }, []);
   return (
     <div className="w-full border-b h-16 bg-white fixed top-0 left-0 z-10 items-center flex overflow-hidden">
-      <nav className="flex-1 bg-green-200  px-4">
+      <nav className="flex-1  px-4">
         <div className="container w-full flex justify-between items-center ">
           <Link to="/" className="text-2xl font-bold">
             <span className="text-gray-900">

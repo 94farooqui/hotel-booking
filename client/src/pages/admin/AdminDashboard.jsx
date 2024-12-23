@@ -6,6 +6,7 @@ import ManageRooms from "../../components/admin/ManageRooms";
 
 import Navbar from "../../components/shared/Navbar";
 import ViewBookings from "../../components/admin/ViewBookings";
+import DashboardCards from "../../components/admin/DashboardCards";
 
 const AdminDashboard = () => {
   const { user, loading } = useContext(AuthContext);
@@ -19,10 +20,11 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div>
-      <div className="container mx-auto my-8 w-[1000px] max-w-[1000px] ">
+    <div className="w-full">
+      <div className="mx-auto w-[1200px] max-w-[1200px] py-8">
         <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
         <div className="w-full space-y-10">
+          <DashboardCards/>
           <ManageHotels />
           <ManageRooms />
           <ViewBookings />

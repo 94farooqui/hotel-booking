@@ -62,8 +62,8 @@ const ManageHotels = () => {
 
   return (
     <div className="w-full">
-      <div className="flex w-fill justify-between items-center bg-indigo-400 p-4 rounded-md">
-        <h2 className="text-2xl font-bold text-white">Manage Hotels</h2>
+      <div className="flex w-fill justify-between items-center bg-indigo-950 p-4 rounded-md">
+        <h2 className="text-2xl font-bold text-white">Hotels</h2>
         <button
           onClick={() => setShowAddNew(true)}
           className="bg-white rounded-md text-indigo-500  px-2 py-1 font-semibold"

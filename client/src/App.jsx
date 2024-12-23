@@ -8,6 +8,7 @@ import Register from "./pages/Register";
 import PrivateRoute from "./components/PrivateRoute";
 import AdminHotelDetails from "./pages/admin/AdminHotelDetails";
 import AdminRootLayout from "./layouts/AdminRootLayout";
+import AdminHotels from "./pages/admin/AdminHotels";
 
 function App() {
   return (
@@ -37,6 +38,10 @@ function App() {
                 <AdminDashboard />
               </PrivateRoute>
             }
+          />
+          <Route
+            path="/admin/hotels"
+            element={<AdminHotels />}
           />
           <Route
             path="/admin/hotels/:hotelId"
