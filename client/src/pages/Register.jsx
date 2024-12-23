@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { registerUser } from '../api/auth';
-import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
+import { useState } from "react";
+import { registerUser } from "../api/auth";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../components/shared/Navbar";
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
+    name: "",
+    email: "",
+    password: "",
   });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -21,9 +21,9 @@ const Register = () => {
     setError(null);
     try {
       await registerUser(formData);
-      navigate('/login');
+      navigate("/login");
     } catch (error) {
-      setError(error.response?.data?.message || 'Registration failed');
+      setError(error.response?.data?.message || "Registration failed");
     }
   };
 

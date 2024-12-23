@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Navbar from "../components/shared/Navbar";
-import { getHotelById } from "./../api/hotel";
-import HotelMap from "../components/HotelMap";
+import Navbar from "../../components/shared/Navbar";
+import { getHotelById } from "../../api/hotel";
+import HotelMap from "../../components/HotelMap";
 
-const HotelDetails = () => {
-  const { id } = useParams();
+const AdminHotelDetails = () => {
+  const { hotelId } = useParams();
   const [hotel, setHotel] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchHotelDetails = async () => {
       try {
-        const data = await getHotelById(id);
+        console.log("Hotel ID", hotelId);
+        const data = await getHotelById(hotelId);
         setHotel(data);
       } catch (error) {
         console.error("Failed to load hotel details:", error);
@@ -22,7 +23,7 @@ const HotelDetails = () => {
     };
 
     fetchHotelDetails();
-  }, [id]);
+  }, [hotelId]);
 
   return (
     <div>
@@ -49,4 +50,4 @@ const HotelDetails = () => {
   );
 };
 
-export default HotelDetails;
+export default AdminHotelDetails;

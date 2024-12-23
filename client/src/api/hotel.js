@@ -30,15 +30,19 @@ export const addHotel = async (hotelData) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    if (response.status == (200 || 201)) {
+    if (response.status == 200 || response.status ==201) {
+      console.log("Response received" , response.status)
       return {
         response: true,
         mesage: "Successfully added",
         data: response.data,
       };
-    } else return { response: false, message: "Unable to add the hotel" };
+    } else {
+      console.log("Response received", response.status);
+      return { response: false, message: "Unable to add the hotel " };
+    }
   } catch (error) {
-    return { response: false, message: "Unable to add the hotel" };
+    return { response: false, message: "Unable to add the hotel with error" };
   }
 };
 

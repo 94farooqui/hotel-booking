@@ -1,11 +1,15 @@
-import { useState, useEffect } from 'react';
-import { getRoomsByHotel, addRoom, deleteRoom } from './../api/booking';
+import { useState, useEffect } from "react";
+import { getRoomsByHotel, addRoom, deleteRoom } from "../../api/booking";
 
 const ManageRooms = () => {
-  const [hotelId, setHotelId] = useState('');
+  const [hotelId, setHotelId] = useState("");
   const [rooms, setRooms] = useState([]);
-  const [addNewRoom,setAddNewRoom] = useState(false)
-  const [newRoom, setNewRoom] = useState({ roomType: '', price: '', features: '' });
+  const [addNewRoom, setAddNewRoom] = useState(false);
+  const [newRoom, setNewRoom] = useState({
+    roomType: "",
+    price: "",
+    features: "",
+  });
 
   useEffect(() => {
     if (hotelId) {
@@ -14,7 +18,7 @@ const ManageRooms = () => {
           const data = await getRoomsByHotel(hotelId);
           setRooms(data);
         } catch (error) {
-          console.error('Error fetching rooms:', error);
+          console.error("Error fetching rooms:", error);
         }
       };
 
@@ -26,9 +30,9 @@ const ManageRooms = () => {
     try {
       const room = await addRoom({ ...newRoom, hotelId });
       setRooms([...rooms, room]);
-      setNewRoom({ roomType: '', price: '', features: '' });
+      setNewRoom({ roomType: "", price: "", features: "" });
     } catch (error) {
-      console.error('Error adding room:', error);
+      console.error("Error adding room:", error);
     }
   };
 
@@ -37,7 +41,7 @@ const ManageRooms = () => {
       await deleteRoom(id);
       setRooms(rooms.filter((room) => room._id !== id));
     } catch (error) {
-      console.error('Error deleting room:', error);
+      console.error("Error deleting room:", error);
     }
   };
 
@@ -90,15 +94,12 @@ const ManageRooms = () => {
             className="col-span-2 p-2 border mr-2"
           />
           <button
-            onClick={()=>setAddNewRoom(false)}
+            onClick={() => setAddNewRoom(false)}
             className=" btn-primary  px-4 py-2"
           >
             Cancel
           </button>
-          <button
-            onClick={handleAddRoom}
-            className=" btn-secondary  px-4 py-2"
-          >
+          <button onClick={handleAddRoom} className=" btn-secondary  px-4 py-2">
             Save
           </button>
         </form>

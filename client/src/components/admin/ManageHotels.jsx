@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { getHotels, addHotel, deleteHotel } from "./../api/hotel";
+import { getHotels, addHotel, deleteHotel } from "../../api/hotel";
+import { Link } from "react-router-dom";
 
 const ManageHotels = () => {
   const [hotels, setHotels] = useState([]);
@@ -26,11 +27,12 @@ const ManageHotels = () => {
   }, []);
 
   const handleAddHotel = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       const addedHotel = await addHotel(newHotel);
-      if (addHotel) {
-        setHotels([...hotels, addedHotel]);
+      if (addedHotel) {
+        console.log(addedHotel);
+        setHotels([...hotels, addedHotel.data]);
         setNewHotel({
           name: "",
           location: "",
@@ -52,9 +54,11 @@ const ManageHotels = () => {
     }
   };
 
-  // const filteredHotels = hotels.filter((hotel) =>
-  //   hotel.name.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
+  const filteredHotels = hotels.filter((hotel) =>
+    searchTerm
+      ? hotel.name.toLowerCase().includes(searchTerm.toLowerCase())
+      : hotel
+  );
 
   return (
     <div className="w-full">
@@ -68,18 +72,20 @@ const ManageHotels = () => {
         </button>
       </div>
 
-      <input
-        type="text"
-        placeholder="Search hotels by name"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="w-full p-2 border-2 border-indigo-500 border-opacity-50 rounded-md my-4 block"
-      />
+      {!showAddNew && (
+        <input
+          type="text"
+          placeholder="Search hotels by name"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full p-2 border-2 border-indigo-500 border-opacity-50 rounded-md my-4 block"
+        />
+      )}
 
       {showAddNew && (
         <form
           onSubmit={handleAddHotel}
-          className="mt-4 mb-6 flex flex-col gap-4"
+          className="mt-4 mb-6 flex flex-col gap-4 bg-indigo-100 p-4 rounded-md overflow-hidden"
         >
           <input
             type="text"
@@ -156,18 +162,23 @@ const ManageHotels = () => {
       )}
       <ul>
         {filteredHotels.map((hotel) => (
-          <li key={hotel._id} className="border p-2 mb-2 flex justify-between">
-            <div>
-              <p className="font-bold">{hotel.name}</p>
-              <p>{hotel.location}</p>
-            </div>
-            <button
-              onClick={() => handleDeleteHotel(hotel._id)}
-              className="bg-red-600 text-white px-4 py-2"
+          <Link key={hotel._id} to={`hotels/${hotel._id}`}>
+            <li
+              key={hotel._id}
+              className="border-b p-2 mb-2 flex justify-between items-center"
             >
-              Delete
-            </button>
-          </li>
+              <div>
+                <p className="font-bold text-gray-700">{hotel.name}</p>
+                <p className="text-sm text-gray-600">{hotel.location}</p>
+              </div>
+              <button
+                onClick={() => handleDeleteHotel(hotel._id)}
+                className="bg-indigo-200 text-indigo-600 font-semibold text-sm px-4 py-1 rounded-md"
+              >
+                Delete
+              </button>
+            </li>
+          </Link>
         ))}
       </ul>
     </div>

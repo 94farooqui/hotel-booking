@@ -26,6 +26,7 @@ const getHotelById = async (req, res) => {
 // Add New Hotel (Admin Only)
 const addHotel = async (req, res) => {
   try {
+    console.log("Add hotel request received")
     const { name, location, description, amenities, rating, coordinates } =
       req.body;
 

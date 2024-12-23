@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import Navbar from '../components/Navbar';
-import { useLocation } from 'react-router-dom';
+import { useState } from "react";
+import Navbar from "../components/shared/Navbar";
+import { useLocation } from "react-router-dom";
 
 const Booking = () => {
   const location = useLocation();
   const room = location.state?.room;
-  const [dates, setDates] = useState({ checkIn: '', checkOut: '' });
+  const [dates, setDates] = useState({ checkIn: "", checkOut: "" });
 
   const handleBooking = () => {
-    console.log('Booking made for room:', room, 'with dates:', dates);
+    console.log("Booking made for room:", room, "with dates:", dates);
     // Call booking API here
   };
 

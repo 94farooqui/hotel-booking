@@ -1,20 +1,25 @@
-import { useContext } from 'react';
-import Navbar from '../components/Navbar';
-import AuthContext from '../context/AuthContext';
-import ManageHotels from '../components/ManageHotels';
-import ManageRooms from '../components/ManageRooms';
-import ViewBookings from '../components/ViewBookings';
+import { useContext } from "react";
+
+import AuthContext from "../../context/AuthContext";
+import ManageHotels from "../../components/admin/ManageHotels";
+import ManageRooms from "../../components/admin/ManageRooms";
+
+import Navbar from "../../components/shared/Navbar";
+import ViewBookings from "../../components/admin/ViewBookings";
 
 const AdminDashboard = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
 
-  if (user?.role !== 'admin') {
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (user?.role !== "admin") {
     return <div className="container mx-auto my-10">Access Denied</div>;
   }
 
   return (
     <div>
-      <Navbar />
       <div className="container mx-auto my-8 w-[1000px] max-w-[1000px] ">
         <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
         <div className="w-full space-y-10">

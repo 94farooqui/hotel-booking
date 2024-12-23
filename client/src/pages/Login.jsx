@@ -1,14 +1,14 @@
-import { useContext, useState } from 'react';
-import { loginUser } from '../api/auth';
-import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-import AuthContext from '../context/AuthContext';
+import { useContext, useState } from "react";
+import { loginUser } from "../api/auth";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../components/shared/Navbar";
+import AuthContext from "../context/AuthContext";
 
 const Login = () => {
-  const {login} = useContext(AuthContext)
+  const { login } = useContext(AuthContext);
   const [credentials, setCredentials] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -22,15 +22,14 @@ const Login = () => {
     setError(null);
     try {
       const data = await loginUser(credentials);
-      if(data){
-        console.log("login response",data)
-        login(data.token)
-        localStorage.setItem('token', data.token); // Store token
-        navigate('/');
+      if (data) {
+        console.log("login response", data);
+        login(data.token);
+        localStorage.setItem("token", data.token); // Store token
+        navigate("/");
       }
-
     } catch (error) {
-      setError(error.response?.data?.message || 'Login failed');
+      setError(error.response?.data?.message || "Login failed");
     }
   };
 

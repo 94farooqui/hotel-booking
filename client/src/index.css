@@ -2,6 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  overscroll-behavior: none;
+}
+
+/* Change the scrollbar width */
+::-webkit-scrollbar {
+  width: 6px; /* For vertical scrollbars */
+  height: 6px; /* For horizontal scrollbars */
+}
+
+/* Change the scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+  background: rgba(165 180 252, 50); /* Thumb color */
+  border-radius: 6px; /* Rounded corners for thumb */
+}
+
+/* Change the scrollbar track (background of the scrollbar) */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+}
+
+
 @layer components{
     .btn-primary{
         @apply bg-indigo-500 px-4 py-2 text-white font-semibold rounded-md

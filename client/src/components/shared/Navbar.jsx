@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthContext from "../context/AuthContext";
+import AuthContext from "../../context/AuthContext";
 import { FaGlobe } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
@@ -9,20 +9,21 @@ import { FaRegUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
-  const [showUserMenu,setShowUserMenu] = useState(false)
-  const menuRef = useRef()
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const menuRef = useRef();
   const [showCurrencyCountryModal, setShowCurrencyCountryModal] = useState();
-  const [language,setLangugae] = useState("EN")
-  const [currency,setCurrency] = useState("AED")
+  const [language, setLangugae] = useState("EN");
+  const [currency, setCurrency] = useState("AED");
 
- const handleOutsideClick = (e) => {
-  if(menuRef.current && !menuRef.current.contains(e.target)) setShowUserMenu(false)
- }
+  const handleOutsideClick = (e) => {
+    if (menuRef.current && !menuRef.current.contains(e.target))
+      setShowUserMenu(false);
+  };
 
-  useEffect(()=>{
-    window.addEventListener("mousedown" , handleOutsideClick )
-    return ()=> window.removeEventListener("mousedown" , handleOutsideClick )
-  },[])
+  useEffect(() => {
+    window.addEventListener("mousedown", handleOutsideClick);
+    return () => window.removeEventListener("mousedown", handleOutsideClick);
+  }, []);
   return (
     <div className="w-screen border-b">
       <nav className="w-[1000px] max-w-[1000px] mx-auto">
