@@ -1,9 +1,10 @@
 import React from 'react'
 import banner from './../assets/pictures/home_banner.jpg'
+import SearchSection from './user/SearchSection';
 
 const HomeBanner = () => {
     return (
-        <div className="relative h-[640px] max-h-[640px] w-full">
+        <div className="relative h-[680px] max-h-[680px] w-full">
           {/* Background Image */}
           <img
             src={banner}
@@ -20,6 +21,9 @@ const HomeBanner = () => {
               Get Started
             </button>
           </header>
+          <div className='w-full self-center absolute -bottom-10'>
+            <SearchSection/>
+          </div>
         </div>
       );
 }
