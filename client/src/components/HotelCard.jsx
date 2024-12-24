@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const HotelCard = ({ hotel }) => {
   return (
-    <div className="border rounded-lg p-4 shadow-md">
+    <div className="border rounded-lg p-4 shadow-md bg-white">
       <h3 className="text-xl font-bold">{hotel.name}</h3>
       <p>{hotel.location}</p>
       <p className='text-gray-500 line-clamp-3'>{hotel.description}</p>

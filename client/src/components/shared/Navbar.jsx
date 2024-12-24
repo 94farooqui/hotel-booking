@@ -25,7 +25,7 @@ const Navbar = () => {
     return () => window.removeEventListener("mousedown", handleOutsideClick);
   }, []);
   return (
-    <div className="w-screen border-b">
+    <div className="w-screen border-b bg-white">
       <nav className="w-[1000px] max-w-[1000px] mx-auto">
         <div className="container w-full flex justify-between items-center ">
           <Link to="/" className="text-2xl font-bold">

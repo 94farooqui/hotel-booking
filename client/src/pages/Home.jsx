@@ -12,12 +12,17 @@ const Home = () => {
       <HomeBanner />
 
       <div className="w-[1000px] mx-auto mt-4 ">
-        <form className="flex w-full gap-2">
+        <form className="flex w-full gap-2 ">
+          <div className="flex-1 border-2 p-4 bg-white rounded-lg overflow-hidden flex items-center justify-between">
           <input
             placeholder="Search"
-            className="p-4 text-xl border-2 rounded-full flex-1"
+            className=" text-xl  py-2 focus:outline-none bg-transparent"
           />
-          <button className="px-8 bg-indigo-500 text-white text-xl font-bold rounded-full">
+          <input type="date" />
+          <p>Travellers</p>
+          </div>
+          
+          <button className="px-8 bg-indigo-500 text-white text-xl font-bold rounded-lg">
             Go
           </button>
         </form>
