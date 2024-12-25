@@ -162,7 +162,7 @@ const ManageHotels = () => {
       )}
       <ul>
         {filteredHotels.map((hotel) => (
-          <Link key={hotel._id} to={`hotels/${hotel._id}`}>
+          <Link key={hotel._id} to={`${hotel._id}`}>
             <li
               key={hotel._id}
               className="border-b p-2 mb-2 flex justify-between items-center"
