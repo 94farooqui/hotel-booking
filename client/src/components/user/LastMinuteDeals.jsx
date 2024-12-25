@@ -61,15 +61,18 @@ const LastMinuteDeals = () => {
           src={BackgroundPicture}
           className="absolute top-0 left-0 w-full h-full"
         />
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-slate-500 to-slate-900 opacity-70">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-slate-500 via-slate-800 to-slate-900 opacity-70">
           {" "}
         </div>
         <div className="flex flex-col">
-          <div className="w-full flex justify-between items-center bg-pink-400">
-            <h2 className="text-white text-2xl font-semibold">
-              Last-minute weekend deals
-            </h2>
-            <button className="bg-white px-4 py-2 rounded-full ">
+          <div className="w-full flex justify-between items-center  z-30 py-4 px-2">
+            <div className="">
+              <h2 className="text-white text-2xl font-semibold">
+                Last-minute weekend deals
+              </h2>
+              <p className="text-white">Showing deals for : <span className="font-bold">Dec 27 - Dec 29</span></p>
+            </div>
+            <button className="bg-white px-4 py-2 rounded-full text-indigo-400 font-bold">
               See all deals
             </button>
           </div>

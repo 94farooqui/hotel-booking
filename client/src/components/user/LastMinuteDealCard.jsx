@@ -6,7 +6,7 @@ const LastMinuteDealCard = ({ deal }) => {
     <div className="flex-none w-[25%] rounded-lg p-2">
       <img
         src={PlaceHolderImage}
-        className="w-full h-[200px] object-cover rounded-[20px]"
+        className="w-full h-[160px] object-cover rounded-[20px]"
       />
       <div className="text-white mt-4 flex flex-col gap-4">
         <p className="text-xl font-semibold">{deal.hotel}</p>
