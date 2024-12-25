@@ -4,7 +4,7 @@ import SearchSection from './user/SearchSection';
 
 const HomeBanner = () => {
     return (
-        <div className="relative h-[680px] max-h-[680px] w-full">
+        <div className="relative h-[680px] max-h-[680px] w-full mb-10">
           {/* Background Image */}
           <img
             src={banner}
