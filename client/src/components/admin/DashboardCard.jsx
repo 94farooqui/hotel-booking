@@ -2,7 +2,7 @@ import React from "react";
 
 const DashboardCard = ({ data }) => {
   return (
-    <div className="flex rounded-md overflow-hidden">
+    <div className="flex rounded-md overflow-hidden border shadow-sm">
       <div
         style={{ backgroundColor: data.color }}
         className="w-24 h-24 flex items-center justify-center py-6"

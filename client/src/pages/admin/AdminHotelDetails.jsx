@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../components/shared/Navbar";
 import { getHotelById } from "../../api/hotel";
-import HotelMap from "../../components/HotelMap";
+import HotelMap from "../../components/user/HotelMap";
+
 
 const AdminHotelDetails = () => {
   const { hotelId } = useParams();

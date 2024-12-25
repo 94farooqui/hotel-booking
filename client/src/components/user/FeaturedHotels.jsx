@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { getHotels } from '../api/hotel';
+import { getHotels } from '../../api/hotel';
 import HotelCard from './HotelCard';
 import { useEffect } from 'react';
 
@@ -24,12 +24,12 @@ const FeaturedHotels = () => {
     
   return (
     <div className='w-screen'>
-        <div className='w-[1000px] max-w-[1000px] mx-auto'>
+        <div className='w-[1200px] max-w-[1200px] mx-auto'>
         <h2 className="text-2xl font-bold mb-4">Featured Hotels</h2>
         {loading ? (
           <p>Loading hotels...</p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 xl:grid-cols-4 gap-6">
             {hotels.map((hotel) => (
               <HotelCard key={hotel._id} hotel={hotel} />
             ))}

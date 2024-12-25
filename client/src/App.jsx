@@ -5,10 +5,11 @@ import Booking from "./pages/Booking";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import PrivateRoute from "./components/PrivateRoute";
+
 import AdminHotelDetails from "./pages/admin/AdminHotelDetails";
 import AdminRootLayout from "./layouts/AdminRootLayout";
 import AdminHotels from "./pages/admin/AdminHotels";
+import PrivateRoute from "./components/shared/PrivateRoute";
 
 function App() {
   return (

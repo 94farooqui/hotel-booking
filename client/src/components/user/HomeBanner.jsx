@@ -1,6 +1,6 @@
 import React from 'react'
-import banner from './../assets/pictures/home_banner.jpg'
-import SearchSection from './user/SearchSection';
+import banner from './../../assets/pictures/home_banner.jpg'
+import SearchSection from './SearchSection';
 
 const HomeBanner = () => {
     return (
