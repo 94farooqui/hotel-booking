@@ -13,7 +13,7 @@ const HotelPhotos = () => {
   return (
     <div className="w-full">
       <div className="flex w-full justify-between items-center py-4">
-        <h4 className="text-xl font-semibold text-gray-700">Photos</h4>
+        <h3 className="text-2xl font-bold mt-6">Photos</h3>
         <button className="bg-gray-200 text-gray-700 font-bold text-sm px-4 py-2 rounded-md">
           Add New
         </button>

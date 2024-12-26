@@ -26,12 +26,22 @@ const socialMediaLinks = [
 const HotelSocialMedia = ({hotel}) => {
   return (
     <div className="w-full mt-4">
-      <div className="flex flex-col gap-4">
+      <div className="flex w-full justify-between items-center ">
+        <h3 className="text-2xl font-bold mt-6">Social Media</h3>
+        <button className="bg-gray-200 text-gray-700 font-bold text-sm px-4 py-2 rounded-md">
+          Add New
+        </button>
+      </div>
+      <div className="flex flex-col gap-4 mt-4">
         {socialMediaLinks.map((link) => (
           <div className="flex justify-between items-center border rounded-lg  p-4">
             <img src={link.icon} className="w-12 h-12 object-cover" />
-            <a href={link.link} className="text-blue-500 underline text-sm">{link.link}/Hotel{hotel.name}</a>
-            <button className="border px-4 py-1 rounded-md text-gray-400 font-medium">Edit</button>
+            <a href={link.link} className="text-blue-500 underline text-sm">
+              {link.link}/Hotel{hotel.name}
+            </a>
+            <button className="border px-4 py-1 rounded-md text-gray-400 font-medium">
+              Edit
+            </button>
           </div>
         ))}
       </div>

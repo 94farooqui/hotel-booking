@@ -10,6 +10,7 @@ import AdminHotelDetails from "./pages/admin/AdminHotelDetails";
 import AdminRootLayout from "./layouts/AdminRootLayout";
 import AdminHotels from "./pages/admin/AdminHotels";
 import PrivateRoute from "./components/shared/PrivateRoute";
+import AddNewHotel from "./pages/admin/AddNewHotel";
 
 function App() {
   return (
@@ -40,14 +41,12 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route
-            path="/admin/hotels"
-            element={<AdminHotels />}
-          />
+          <Route path="/admin/hotels" element={<AdminHotels />} />
           <Route
             path="/admin/hotels/:hotelId"
             element={<AdminHotelDetails />}
           />
+          <Route path="/admin/hotels/new" element={<AddNewHotel />} />
         </Route>
       </Routes>
     </>

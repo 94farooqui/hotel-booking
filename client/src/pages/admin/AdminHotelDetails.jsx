@@ -39,7 +39,7 @@ const AdminHotelDetails = () => {
   return (
     <div>
       <main className="container mx-auto">
-        <div className="p-6  rounded-lg ">
+        <div className=" rounded-lg ">
           <div>
             <div className="flex justify-between border-b pb-4">
               <h1 className="text-3xl font-bold">{hotel.name}</h1>
