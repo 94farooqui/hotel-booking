@@ -3,14 +3,14 @@ import HotelMap from '../../components/user/HotelMap';
 
 const HotelInfo = ({hotel}) => {
   return (
-    <div>
+    <div className='w-full mt-4'>
       <p className="text-gray-700">{hotel.location}</p>
       <p className="mt-4">{hotel.description}</p>
       <h2 className="text-2xl font-bold mt-6">Location</h2>
-      <HotelMap
+      {/* <HotelMap
         latitude={hotel.coordinates.latitude}
         longitude={hotel.coordinates.longitude}
-      />
+      /> */}
     </div>
   );
 }

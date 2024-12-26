@@ -21,7 +21,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="w-full">
-      <div className="mx-auto w-[1200px] max-w-[1200px] py-8">
+      <div className="mx-auto w-[1200px] max-w-[1200px] p-8">
         <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
         <div className="w-full space-y-10">
           <DashboardCards/>
