@@ -47,11 +47,11 @@ const ManageRooms = () => {
 
   return (
     <div className="w-full">
-      <div className="flex w-fill justify-between items-center bg-indigo-400 p-4 rounded-md">
+      <div className="flex w-fill justify-between items-center bg-gradient-to-r from-gray-900 to-gray-700 p-4 rounded-md">
         <h2 className="text-2xl font-bold text-white">Manage Rooms</h2>
         <button
           onClick={() => setAddNewRoom(true)}
-          className="bg-white rounded-md text-indigo-500  px-2 py-1 font-semibold"
+          className="bg-gradient-to-r from-gray-500 to-gray-400 rounded-md text-gray-100  px-2 py-1 font-semibold"
         >
           Add New
         </button>

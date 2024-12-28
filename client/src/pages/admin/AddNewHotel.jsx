@@ -33,12 +33,19 @@ const AddNewHotel = () => {
     email: false,
     website: false,
   });
+  const [showSocialMediaTabs, setShowSocialMediaTabs] = useState({
+    facebook: true,
+    instagram: false,
+    twitter: false,
+    linkedin: false,
+  });
   const [newHotel, setNewHotel] = useState({
     name: "",
     location: "",
     coordinates: "",
     description: "",
     contactinfo: [{ call: "", whatsapp: "", email: "", website: "" }],
+    socialMedia : [{facebook:"", instagram:"", twitter:"", linkedin:""}],
     roomTypes: [],
   });
 
@@ -90,6 +97,17 @@ const AddNewHotel = () => {
     console.log(newHotel);
   };
 
+    const handleAddSocialMedia = (e) => {
+      setNewHotel({
+        ...newHotel,
+        socialMedia: {
+          ...newHotel.socialMedia,
+          [e.target.name]: e.target.value,
+        },
+      });
+      console.log(newHotel);
+    };
+
   const handleAddNewRoomType = () => {
     console.log("Room Type Added");
     const newRoomTypes = [...newHotel.roomTypes, newRoomType];
@@ -106,11 +124,14 @@ const AddNewHotel = () => {
         <div className="flex gap-2">
           <button
             onClick={() => setShowAddNew(false)}
-            className="bg-gray-200 text-gray-700 font-bold text-sm px-4 py-2 rounded-md"
+            className="bg-gray-200 hover:ring-1 hover:ring-gray-400 text-gray-700 font-bold text-sm px-4 py-2 rounded-md"
           >
             Cancel
           </button>
-          <button type="submit" className=" btn-primary">
+          <button
+            type="submit"
+            className=" hover:ring-1 hover:ring-gray-400 btn-primary bg-gradient-to-r from-gray-700 to-gray-500"
+          >
             Save
           </button>
         </div>
@@ -181,8 +202,8 @@ const AddNewHotel = () => {
         />
       </form>
       {/* Room Types Form */}
-      <form className="mt-4 mb-6 flex flex-col gap-4 rounded-md overflow-hidden">
-        <div className="flex items-center gap-4 mt-4">
+      <form className="mt-8 flex flex-col gap-4 rounded-md overflow-hidden">
+        <div className="flex items-center gap-4 mt-0">
           <h2 className="text-xl font-semibold text-gray-800">Room Types</h2>
         </div>
         <select
@@ -229,7 +250,7 @@ const AddNewHotel = () => {
             </div>
           </div>
         )}
-        <div className="flex gap-4 mt-4">
+        <div className="flex gap-4 mt-2">
           {newHotel.roomTypes &&
             newHotel.roomTypes.map((room) => (
               <div
@@ -252,7 +273,7 @@ const AddNewHotel = () => {
         </div>
       </form>
       {/* Contact Info Form */}
-      <div className="flex items-center gap-4 mt-4">
+      <div className="flex items-center gap-4 mt-8">
         <h2 className="text-xl font-semibold text-gray-800">Contact info</h2>
       </div>
       <form className="mt-4 mb-6 flex flex-col gap-4 rounded-md overflow-hidden">
@@ -376,7 +397,7 @@ const AddNewHotel = () => {
       </form>
       {/* Social Media Form */}
       {/* IoLogoFacebook IoLogoInstagram FaXTwitter IoLogoLinkedin */}
-      <div className="flex items-center gap-4 mt-4">
+      <div className="flex items-center gap-4 mt-8">
         <h2 className="text-xl font-semibold text-gray-800">Social Media</h2>
       </div>
       <form className="mt-4 mb-6 flex flex-col gap-4 rounded-md overflow-hidden">
@@ -384,13 +405,13 @@ const AddNewHotel = () => {
           <button
             type="button"
             onClick={(e) =>
-              setShowContactInfoTabs({
-                ...showContactInfoTabs,
-                call: !showContactInfoTabs.call,
+              setShowSocialMediaTabs({
+                ...showSocialMediaTabs,
+                facebook: !showSocialMediaTabs.facebook,
               })
             }
             className={`px-4 py-2 rounded-md bg-gradient-to-r border shadow-sm ${
-              showContactInfoTabs.call
+              showSocialMediaTabs.facebook
                 ? "from-gray-700 to-gray-600 text-white "
                 : "from-gray-100 to-white border"
             } `}
@@ -400,13 +421,13 @@ const AddNewHotel = () => {
           <button
             type="button"
             onClick={(e) =>
-              setShowContactInfoTabs({
-                ...showContactInfoTabs,
-                whatsapp: !showContactInfoTabs.whatsapp,
+              setShowSocialMediaTabs({
+                ...showSocialMediaTabs,
+                instagram: !showSocialMediaTabs.instagram,
               })
             }
             className={`px-4 py-2 rounded-md bg-gradient-to-r border shadow-sm ${
-              showContactInfoTabs.whatsapp
+              showSocialMediaTabs.instagram
                 ? "from-gray-700 to-gray-600 text-white "
                 : "from-gray-100 to-white border"
             } `}
@@ -416,13 +437,13 @@ const AddNewHotel = () => {
           <button
             type="button"
             onClick={(e) =>
-              setShowContactInfoTabs({
-                ...showContactInfoTabs,
-                email: !showContactInfoTabs.email,
+              setShowSocialMediaTabs({
+                ...showSocialMediaTabs,
+                twitter: !showSocialMediaTabs.twitter,
               })
             }
             className={`px-4 py-2 rounded-md bg-gradient-to-r border shadow-sm ${
-              showContactInfoTabs.email
+              showSocialMediaTabs.twitter
                 ? "from-gray-700 to-gray-600 text-white "
                 : "from-gray-100 to-white border"
             } `}
@@ -432,13 +453,13 @@ const AddNewHotel = () => {
           <button
             type="button"
             onClick={(e) =>
-              setShowContactInfoTabs({
-                ...showContactInfoTabs,
-                website: !showContactInfoTabs.website,
+              setShowSocialMediaTabs({
+                ...showSocialMediaTabs,
+                linkedin: !showSocialMediaTabs.linkedin,
               })
             }
             className={`px-4 py-2 rounded-md bg-gradient-to-r border shadow-sm ${
-              showContactInfoTabs.website
+              showSocialMediaTabs.linkedin
                 ? "from-gray-700 to-gray-600 text-white "
                 : "from-gray-100 to-white border"
             } `}
@@ -447,51 +468,51 @@ const AddNewHotel = () => {
           </button>
         </div>
         <div className="grid grid-cols-2 gap-4">
-          {showContactInfoTabs.call && (
+          {showSocialMediaTabs.facebook && (
             <div className="border rounded-md w-full flex items-center">
               <input
-                name="call"
+                name="facebook"
                 defaultValue={newHotel.contactinfo.call}
-                onChange={handleAddContactinfo}
+                onChange={handleAddSocialMedia}
                 className="p-2  w-full"
-                placeholder="Call"
+                placeholder="Facebook"
               />
 
               <IoLogoFacebook className="text-lg text-gray-400 mr-4" />
             </div>
           )}
-          {showContactInfoTabs.whatsapp && (
+          {showSocialMediaTabs.instagram && (
             <div className="border rounded-md w-full flex items-center">
               <input
-                name="whatsapp"
+                name="instagram"
                 defaultValue={newHotel.contactinfo.whatsapp}
-                onChange={handleAddContactinfo}
+                onChange={handleAddSocialMedia}
                 className="p-2  w-full"
-                placeholder="WhatsApp"
+                placeholder="Instagram"
               />
               <IoLogoInstagram className="text-lg text-gray-400 mr-4" />
             </div>
           )}
-          {showContactInfoTabs.email && (
+          {showSocialMediaTabs.twitter && (
             <div className="border rounded-md w-full flex items-center">
               <input
-                name="email"
+                name="twitter"
                 defaultValue={newHotel.contactinfo.email}
-                onChange={handleAddContactinfo}
+                onChange={handleAddSocialMedia}
                 className="p-2  w-full"
-                placeholder="Email"
+                placeholder="Twiiter/X"
               />
               <FaXTwitter className="text-lg text-gray-400 mr-4" />
             </div>
           )}
-          {showContactInfoTabs.website && (
+          {showSocialMediaTabs.linkedin && (
             <div className="border rounded-md w-full flex items-center">
               <input
-                name="website"
+                name="linkedin"
                 defaultValue={newHotel.contactinfo.website}
-                onChange={handleAddContactinfo}
+                onChange={handleAddSocialMedia}
                 className="p-2  w-full"
-                placeholder="Website"
+                placeholder="LinkedIn"
               />
               <IoLogoLinkedin className="text-lg text-gray-400 mr-4" />
             </div>
