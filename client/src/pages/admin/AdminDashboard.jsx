@@ -25,7 +25,6 @@ const AdminDashboard = () => {
         <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
         <div className="w-full space-y-10">
           <DashboardCards/>
-          <ManageRooms />
           <ViewBookings />
         </div>
       </div>

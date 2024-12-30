@@ -47,15 +47,22 @@ const ManageRooms = () => {
 
   return (
     <div className="w-full">
-      <div className="flex w-fill justify-between items-center bg-gradient-to-r from-gray-900 to-gray-700 p-4 rounded-md">
-        <h2 className="text-2xl font-bold text-white">Manage Rooms</h2>
+      <div className="flex w-full justify-between items-center border-b">
+        <h3 className="text-2xl font-bold mt-6">Manage Rooms</h3>
         <button
           onClick={() => setAddNewRoom(true)}
-          className="bg-gradient-to-r from-gray-500 to-gray-400 rounded-md text-gray-100  px-2 py-1 font-semibold"
+          className="bg-gray-200 text-gray-700 font-bold text-sm px-4 py-2 rounded-md"
         >
           Add New
         </button>
       </div>
+      {/* 
+      <div className="flex w-full justify-between items-center ">
+        <h3 className="text-2xl font-bold mt-6">Room Types</h3>
+        <button className="bg-gray-200 text-gray-700 font-bold text-sm px-4 py-2 rounded-md">
+          Add New
+        </button>
+      </div> */}
 
       {addNewRoom && (
         <form className="my-6 grid grid-cols-2 gap-4">

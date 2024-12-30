@@ -1,19 +1,29 @@
 import React from 'react'
+import ManageRooms from './ManageRooms'
 
 const roomTypesData = ["Deluxe" , "Premium" , "Premium Plus" , "Non-deluxe" , "Economic"]
 
 const HotelRoomTypes = () => {
   return (
-    <div className='w-full mt-4'>
-      <div className='flex w-full justify-between items-center '>
+    <div className="w-full mt-4">
+      <div className="flex w-full justify-between items-center ">
         <h3 className="text-2xl font-bold mt-6">Room Types</h3>
-        <button className='bg-gray-200 text-gray-700 font-bold text-sm px-4 py-2 rounded-md'>Add New</button>
+        <button className="bg-gray-200 text-gray-700 font-bold text-sm px-4 py-2 rounded-md">
+          Add New
+        </button>
       </div>
-      <div className='flex gap-4 mt-4'>
-        {roomTypesData.map(room => <div className='px-4 border rounded-md py-2 shadow-sm font-semibold text-gray-600 bg-gradient-to-r from-gray-100 to-white'>{room}</div>)}
+      <div className="flex gap-4 mt-4">
+        {roomTypesData.map((room) => (
+          <div className="px-4 border rounded-md py-2 shadow-sm font-semibold text-gray-600 bg-gradient-to-r from-gray-100 to-white">
+            {room}
+          </div>
+        ))}
+      </div>
+      <div className="mt-8">
+        <ManageRooms />
       </div>
     </div>
-  )
+  );
 }
 
 export default HotelRoomTypes

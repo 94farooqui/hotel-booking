@@ -75,7 +75,7 @@ const AdminHotelDetails = () => {
                 selectedTab == "room_types" ? "bg-gray-500 text-white" : ""
               }`}
             >
-              Room Types
+              Rooms
             </li>
             <li
               onClick={() => setSelectedTab("photo_gallery")}
