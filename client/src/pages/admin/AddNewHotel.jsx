@@ -202,76 +202,7 @@ const AddNewHotel = () => {
         />
       </form>
       {/* Room Types Form */}
-      <form className="mt-8 flex flex-col gap-4 rounded-md overflow-hidden">
-        <div className="flex items-center gap-4 mt-0">
-          <h2 className="text-xl font-semibold text-gray-800">Room Types</h2>
-        </div>
-        <select
-          defaultValue="DEFAULT"
-          className="rounded-md p-2 border mr-2"
-          onChange={addroomType}
-        >
-          <option disabled value="DEFAULT">
-            Select Room Types
-          </option>
-          {roomTypesData.map((type) => (
-            <option key={type} value={type}>
-              {type}
-            </option>
-          ))}
-          <option value="new">New Room Type</option>
-        </select>
-        {showNewRoomTypeModel && (
-          <div className="absolute top-0 left-0 z-40 w-screen h-screen bg-gray-800 bg-opacity-50 flex justify-center items-center">
-            <div className="w-[400px] bg-white rounded-md overflow-hidden p-4 flex flex-col gap-4 shadow-md">
-              <div className="flex justify-between items-center">
-                <label className="font-semibold text-gray-600">
-                  New Room Type
-                </label>
-                <button
-                  className="text-xl"
-                  onClick={() => setShowNewRoomTypeModal(false)}
-                >
-                  <IoClose />
-                </button>
-              </div>
-              <input
-                id="new_roomtype"
-                type="text"
-                className="border p-2 rounded-md"
-                onChange={(e) => setNewRoomType(e.target.value)}
-              />
-              <button
-                onClick={handleAddNewRoomType}
-                className="bg-gray-200 self-center px-4 py-1 rounded-md"
-              >
-                Save
-              </button>
-            </div>
-          </div>
-        )}
-        <div className="flex gap-4 mt-2">
-          {newHotel.roomTypes &&
-            newHotel.roomTypes.map((room) => (
-              <div
-                key={room}
-                className="flex items-center group gap-2 px-4 border rounded-md py-2 shadow-sm font-semibold text-gray-600 bg-gradient-to-r from-gray-100 to-white"
-              >
-                <p>{room}</p>
-                <button
-                  onClick={() =>
-                    setNewHotel({
-                      ...newHotel,
-                      roomTypes: newHotel.roomTypes.filter((e) => e != room),
-                    })
-                  }
-                >
-                  <IoClose className="hidden group-hover:block" />
-                </button>
-              </div>
-            ))}
-        </div>
-      </form>
+      
       {/* Contact Info Form */}
       <div className="flex items-center gap-4 mt-8">
         <h2 className="text-xl font-semibold text-gray-800">Contact info</h2>
@@ -350,7 +281,7 @@ const AddNewHotel = () => {
                 name="call"
                 defaultValue={newHotel.contactinfo.call}
                 onChange={handleAddContactinfo}
-                className="p-2  w-full"
+                className="p-2  w-full focus:outline-none"
                 placeholder="Call"
               />
 
@@ -363,7 +294,7 @@ const AddNewHotel = () => {
                 name="whatsapp"
                 defaultValue={newHotel.contactinfo.whatsapp}
                 onChange={handleAddContactinfo}
-                className="p-2  w-full"
+                className="p-2  w-full focus:outline-none"
                 placeholder="WhatsApp"
               />
               <IoLogoWhatsapp className="text-lg text-gray-400 mr-4" />
@@ -375,7 +306,7 @@ const AddNewHotel = () => {
                 name="email"
                 defaultValue={newHotel.contactinfo.email}
                 onChange={handleAddContactinfo}
-                className="p-2  w-full"
+                className="p-2  w-full focus:outline-none"
                 placeholder="Email"
               />
               <IoMailOutline className="text-lg text-gray-400 mr-4" />
@@ -472,9 +403,9 @@ const AddNewHotel = () => {
             <div className="border rounded-md w-full flex items-center">
               <input
                 name="facebook"
-                defaultValue={newHotel.contactinfo.call}
+                defaultValue={newHotel.socialMedia.facebook}
                 onChange={handleAddSocialMedia}
-                className="p-2  w-full"
+                className="p-2  w-full focus:outline-none"
                 placeholder="Facebook"
               />
 
@@ -485,7 +416,7 @@ const AddNewHotel = () => {
             <div className="border rounded-md w-full flex items-center">
               <input
                 name="instagram"
-                defaultValue={newHotel.contactinfo.whatsapp}
+                defaultValue={newHotel.socialMedia.instagram}
                 onChange={handleAddSocialMedia}
                 className="p-2  w-full"
                 placeholder="Instagram"
@@ -497,9 +428,9 @@ const AddNewHotel = () => {
             <div className="border rounded-md w-full flex items-center">
               <input
                 name="twitter"
-                defaultValue={newHotel.contactinfo.email}
+                defaultValue={newHotel.socialMedia.twitter}
                 onChange={handleAddSocialMedia}
-                className="p-2  w-full"
+                className="p-2  w-full focus:outline-none"
                 placeholder="Twiiter/X"
               />
               <FaXTwitter className="text-lg text-gray-400 mr-4" />
@@ -509,9 +440,9 @@ const AddNewHotel = () => {
             <div className="border rounded-md w-full flex items-center">
               <input
                 name="linkedin"
-                defaultValue={newHotel.contactinfo.website}
+                defaultValue={newHotel.socialMedia.linkedin}
                 onChange={handleAddSocialMedia}
-                className="p-2  w-full"
+                className="p-2  w-full focus:outline-none"
                 placeholder="LinkedIn"
               />
               <IoLogoLinkedin className="text-lg text-gray-400 mr-4" />

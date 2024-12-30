@@ -64,7 +64,7 @@ const AdminHotelDetails = () => {
             <li
               onClick={() => setSelectedTab("info")}
               className={` cursor-pointer px-4 py-2  ${
-                selectedTab == "info" ? "bg-gray-500 text-white" : ""
+                selectedTab == "info" ? "bg-gradient-to-r from-gray-900 to-gray-800 text-white" : ""
               }`}
             >
               Details
@@ -72,7 +72,7 @@ const AdminHotelDetails = () => {
             <li
               onClick={() => setSelectedTab("room_types")}
               className={` cursor-pointer px-4 py-2  ${
-                selectedTab == "room_types" ? "bg-gray-500 text-white" : ""
+                selectedTab == "room_types" ? "bg-gradient-to-r from-gray-900 to-gray-800 text-white" : ""
               }`}
             >
               Rooms
@@ -80,7 +80,7 @@ const AdminHotelDetails = () => {
             <li
               onClick={() => setSelectedTab("photo_gallery")}
               className={` cursor-pointer px-4 py-2  ${
-                selectedTab == "photo_gallery" ? "bg-gray-500 text-white" : ""
+                selectedTab == "photo_gallery" ? "bg-gradient-to-r from-gray-900 to-gray-800 text-white" : ""
               }`}
             >
               Photo Gallery
@@ -88,7 +88,7 @@ const AdminHotelDetails = () => {
             <li
               onClick={() => setSelectedTab("social_media")}
               className={` cursor-pointer px-4 py-2  ${
-                selectedTab == "social_media" ? "bg-gray-500 text-white" : ""
+                selectedTab == "social_media" ? "bg-gradient-to-r from-gray-900 to-gray-800 text-white" : ""
               }`}
             >
               Social Media
@@ -96,7 +96,7 @@ const AdminHotelDetails = () => {
             <li
               onClick={() => setSelectedTab("contact")}
               className={` cursor-pointer px-4 py-2  ${
-                selectedTab == "contact" ? "bg-gray-500 text-white" : ""
+                selectedTab == "contact" ? "bg-gradient-to-r from-gray-900 to-gray-800 text-white" : ""
               }`}
             >
               Contact Info

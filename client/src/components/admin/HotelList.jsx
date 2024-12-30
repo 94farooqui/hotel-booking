@@ -80,7 +80,7 @@ const HotelList = () => {
           </thead>
           <tbody className="[&>*:nth-child(odd)]:bg-white [&>*:nth-child(even)]:bg-gray-100">
             {filteredHotels.map((hotel) => (
-              <tr className="">
+              <tr key={hotel._id} className="">
                 <td className="py-2 pl-4 font-semibold text-gray-600">
                   {hotel.name}
                 </td>

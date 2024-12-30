@@ -9,7 +9,7 @@ const DashboardCard = ({ data }) => {
       >
         <img src={data.icon} className="w-10" />
       </div>
-      <div className="flex-1 bg-white flex flex-col items-start justify-center gap-y-2 p-4">
+      <div className="flex-1 bg-gradient-to-b from-gray-50 to-gray-100 flex flex-col items-start justify-center gap-y-2 p-4 shadow-sm">
         <p className="text-gray-900 opacity-80">{data.title}</p>
         <p className="text-2xl font-semibold" >
           {data.value}
