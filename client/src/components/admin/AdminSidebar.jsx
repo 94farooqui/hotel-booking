@@ -25,7 +25,7 @@ const AdminSidebar = () => {
               Users
             </li>
           </Link>
-          <Link to="">
+          <Link to="/admin/bookings">
             <li className="px-8 py-4 text-gray-200 hover:bg-gray-600 hover:text-white flex items-center gap-2">
               <img src={Flower} className="w-6 opacity-50" />
               Bookings

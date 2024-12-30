@@ -12,6 +12,7 @@ import AdminHotels from "./pages/admin/AdminHotels";
 import PrivateRoute from "./components/shared/PrivateRoute";
 import AddNewHotel from "./pages/admin/AddNewHotel";
 import AdminHotelEdit from "./pages/admin/AdminHotelEdit";
+import AdminBookings from "./pages/admin/AdminBookings";
 
 function App() {
   return (
@@ -27,7 +28,8 @@ function App() {
             </PrivateRoute>
           }
         />
-
+      </Routes>
+      <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
@@ -43,6 +45,7 @@ function App() {
             }
           />
           <Route path="/admin/hotels" element={<AdminHotels />} />
+          <Route path="/admin/bookings" element={<AdminBookings />} />
           <Route
             path="/admin/hotels/:hotelId"
             element={<AdminHotelDetails />}
