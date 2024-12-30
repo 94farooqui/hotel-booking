@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import { getHotels } from "../../api/hotel";
 import { Link, useNavigate } from "react-router-dom";
 
+
+import { MdRemoveRedEye } from "react-icons/md";
+import { MdEdit } from "react-icons/md";
+import { MdDeleteOutline } from "react-icons/md";
+
 const HotelList = () => {
     const navigate = useNavigate()
   const [hotels, setHotels] = useState([]);
@@ -29,7 +34,10 @@ const HotelList = () => {
     <div>
       <div className="flex w-full justify-between items-center ">
         <h2 className="text-3xl font-semibold text-gray-800">Hotels</h2>
-        <button onClick={()=>navigate("new")} className="bg-gray-200 text-gray-700 font-bold text-sm px-4 py-2 rounded-md">
+        <button
+          onClick={() => navigate("new")}
+          className="bg-gray-200 hover:bg-gray-800 hover:text-white text-gray-700 font-bold text-sm px-4 py-2 rounded-md"
+        >
           Add New
         </button>
       </div>
@@ -38,9 +46,9 @@ const HotelList = () => {
         placeholder="Search hotels by name"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="w-full p-2 border-2 border-indigo-500 border-opacity-50 rounded-md my-4 block"
+        className="w-full p-2 border-2 border-gray-500 border-opacity-50 rounded-md my-4 block"
       />
-      <ul>
+      {/* <ul>
         {filteredHotels.map((hotel) => (
           <Link key={hotel._id} to={`${hotel._id}`}>
             <li
@@ -60,7 +68,45 @@ const HotelList = () => {
             </li>
           </Link>
         ))}
-      </ul>
+      </ul> */}
+      <div className="relative flex flex-col w-full h-full  shadow-md rounded-xl bg-clip-border">
+        <table className="w-full text-left table-auto min-w-max rounded-md overflow-hidden text-sm">
+          <thead className="bg-gradient-to-r from-gray-900 to-gray-800 text-white">
+            <tr className="">
+              <th className="pl-4 py-2">Name</th>
+              <th className="py-2">Address</th>
+              <th className=" py-2pr-4">Actions</th>
+            </tr>
+          </thead>
+          <tbody className="[&>*:nth-child(odd)]:bg-white [&>*:nth-child(even)]:bg-gray-100">
+            {filteredHotels.map((hotel) => (
+              <tr className="">
+                <td className="py-2 pl-4 font-semibold text-gray-600">
+                  {hotel.name}
+                </td>
+                <td className="py-2">{hotel.location}</td>
+                <td className="flex gap-4 items-center py-2 pr-4">
+                  <button
+                    onClick={() => navigate(`${hotel._id}`)}
+                    className="p-1 hover:bg-gray-300 rounded-md"
+                  >
+                    <MdRemoveRedEye />
+                  </button>
+                  <button
+                    onClick={() => navigate(`${hotel._id}/edit`)}
+                    className="p-1 hover:bg-gray-300 rounded-md"
+                  >
+                    <MdEdit />
+                  </button>
+                  <button className="p-1 hover:bg-gray-300 rounded-md">
+                    <MdDeleteOutline />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
