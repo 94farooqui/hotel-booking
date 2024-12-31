@@ -8,6 +8,7 @@ const authRoutes = require('./routes/authRoutes');
 const hotelRoutes = require('./routes/hotelRoutes');
 const roomRoutes = require('./routes/roomRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
+const dashboardRoutes = require('./routes/dashboardRoutes.js')
 
 dotenv.config();
 
@@ -29,8 +30,8 @@ app.get("/protected", protect, (req,res) => {
 
 
 
+app.use('/api/dashboard', dashboardRoutes)
 app.use('/api/auth', authRoutes);
-
 app.use('/api/hotels', hotelRoutes);
 app.use('/api/rooms', roomRoutes);
 app.use('/api/bookings', bookingRoutes);
