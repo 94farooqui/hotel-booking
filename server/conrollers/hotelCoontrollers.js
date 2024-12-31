@@ -48,15 +48,16 @@ const addHotel = async (req, res) => {
 // Update Hotel (Admin Only)
 const updateHotel = async (req, res) => {
   try {
+    console.log("Update request", req.body)
     const hotel = await Hotel.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
     if (!hotel) {
       return res.status(404).json({ message: "Hotel not found" });
     }
-    res.json(hotel);
+    return res.status(200).json(hotel);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 };
 

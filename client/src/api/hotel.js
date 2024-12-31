@@ -47,4 +47,27 @@ export const addHotel = async (hotelData) => {
   }
 };
 
+export const updateHotel = async (hotelData) => {
+  try {
+    const response = await axios.put(`${API_BASE_URL}/hotels/${hotelData._id}`, hotelData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (response.status == 200 || response.status ==201) {
+      console.log("Response received" , response)
+      return {
+        response: true,
+        mesage: "Successfully added",
+        data: response.data,
+      };
+    } else {
+      console.log("Response received", response.status);
+      return { response: false, message: "Unable to add the hotel " };
+    }
+  } catch (error) {
+    return { response: false, message: "Unable to add the hotel with error" };
+  }
+};
+
 export const deleteHotel = () => {};
