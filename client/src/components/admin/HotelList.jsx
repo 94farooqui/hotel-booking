@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getHotels } from "../../api/hotel";
+import { deleteHotel, getHotels } from "../../api/hotel";
 import { Link, useNavigate } from "react-router-dom";
 
 
@@ -29,6 +29,14 @@ const HotelList = () => {
       ? hotel.name.toLowerCase().includes(searchTerm.toLowerCase())
       : hotel
   );
+
+  const handleDeleteHotel = async (hotelId) => {
+    const userConfirmed = window.confirm("Are you sure you want to delete?");
+    if(userConfirmed){
+      const deleted = await deleteHotel(hotelId);
+    }
+    else return;
+  }
 
   return (
     <div>
@@ -98,7 +106,7 @@ const HotelList = () => {
                   >
                     <MdEdit />
                   </button>
-                  <button className="p-1 hover:bg-gray-300 rounded-md">
+                  <button onClick={()=>handleDeleteHotel(hotel._id)} className="p-1 hover:bg-gray-300 rounded-md">
                     <MdDeleteOutline />
                   </button>
                 </td>

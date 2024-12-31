@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FaRegEdit } from "react-icons/fa";
 
 const contactInfo = [
@@ -20,35 +20,37 @@ const contactInfo = [
   }
 ]
 
-const HotelContactInfo = ({hotel}) => {
+const HotelContactInfo = ({ contact }) => {
+  useEffect(() => {
+    console.log(contact);
+  }, []);
   return (
     <div className="w-full mt-4">
       <div className="flex w-full justify-between items-center ">
         <h3 className="text-2xl font-bold mt-6">Contact Info</h3>
-        <button className="bg-gray-200 text-gray-700 font-bold text-sm px-4 py-2 rounded-md">
-          Add New
-        </button>
+        
       </div>
       <div className="flex flex-col gap-4 mt-4">
-        {contactInfo.map((field) => (
-          <div>
-            <p>
-              <span className={`font-semibold text-gray-600`}>
-                {field.name} :
-              </span>{" "}
-              <span
-                className={` ${
-                  field.name == "Email" ? "text-blue-400 underline" : ""
-                }`}
-              >
-                {field.value}
-              </span>
-            </p>
-          </div>
-        ))}
+        {contact &&
+          contact.map((field) => (
+            <div>
+              <p>
+                <span className={`font-semibold text-gray-600`}>
+                  {field.mode} :
+                </span>{" "}
+                <span
+                  className={` ${
+                    field.name == "Email" ? "text-blue-400 underline" : ""
+                  }`}
+                >
+                  {field.detail}
+                </span>
+              </p>
+            </div>
+          ))}
       </div>
     </div>
   );
-}
+};
 
 export default HotelContactInfo

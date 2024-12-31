@@ -26,6 +26,7 @@ const AdminDashboard = () => {
         <div className="w-full space-y-10">
           <DashboardCards/>
           <ViewBookings />
+          
         </div>
       </div>
     </div>

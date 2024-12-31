@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { addHotel } from "../../api/hotel";
 import { IoClose } from "react-icons/io5";
@@ -14,6 +14,30 @@ import { IoLogoInstagram } from "react-icons/io5";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoLinkedin } from "react-icons/io5";
 
+const defaultNewHotel = {
+  name: "",
+  location: "",
+  description: "",
+  highlights: [""],
+  rating: "",
+  features: [""],
+  contactinfo: [
+    { mode: "Call", detail: "" },
+    { mode: "WhatsApp", detail: "" },
+    { mode: "Email", detail: "" },
+    { mode: "Website", detail: "" },
+  ],
+  social_media: [
+    { platform: "Facebook", url: "" },
+    { platform: "Instagram", url: "" },
+    { platform: "Twitter", url: "" },
+    { platform: "LinkedIn", url: "" },
+  ],
+  coordinates: {
+    latitude: "",
+    longitude: "",
+  },
+};
 
 const roomTypesData = [
   "Deluxe",
@@ -24,9 +48,9 @@ const roomTypesData = [
 ];
 
 const AddNewHotel = () => {
+  const [newHotel, setNewHotel] = useState(defaultNewHotel);
   const navigate = useNavigate();
-  const [showNewRoomTypeModel, setShowNewRoomTypeModal] = useState(false);
-  const [newRoomType, setNewRoomType] = useState("");
+
   const [showContactInfoTabs, setShowContactInfoTabs] = useState({
     call: true,
     whatsapp: false,
@@ -39,15 +63,10 @@ const AddNewHotel = () => {
     twitter: false,
     linkedin: false,
   });
-  const [newHotel, setNewHotel] = useState({
-    name: "",
-    location: "",
-    coordinates: "",
-    description: "",
-    contactinfo: [{ call: "", whatsapp: "", email: "", website: "" }],
-    socialMedia : [{facebook:"", instagram:"", twitter:"", linkedin:""}],
-    roomTypes: [],
-  });
+  
+  useEffect(()=>{
+    console.log(newHotel)
+  },[])
 
   const addroomType = (e) => {
     if (e.target.value == "new") {
@@ -60,24 +79,25 @@ const AddNewHotel = () => {
     }
   };
 
+  const handleAddHighlightField = (e) => {
+setNewHotel({ ...newHotel, highlights: [...newHotel.highlights, ""] });
+  }
+
   const handleAddHotel = async (e) => {
     e.preventDefault();
     console.log("Form submitted");
-    // try {
-    //   const addedHotel = await addHotel(newHotel);
-    //   if (addedHotel) {
-    //     console.log(addedHotel);
-    //     setHotels([...hotels, addedHotel.data]);
-    //     setNewHotel({
-    //       name: "",
-    //       location: "",
-    //       description: "",
-    //       coordinates: "",
-    //     });
-    //   }
-    // } catch (error) {
-    //   console.error("Error adding hotel:", error);
-    // }
+    try {
+      const addedHotel = await addHotel(newHotel);
+      if (addedHotel) {
+        console.log(addedHotel);
+        alert("Added Successfully")
+        navigate(-1)
+        //setHotels([...hotels, addedHotel.data]);
+        setNewHotel(defaultNewHotel);
+      }
+    } catch (error) {
+      console.error("Error adding hotel:", error);
+    }
   };
 
   const handleDeleteHotel = async (id) => {
@@ -89,13 +109,28 @@ const AddNewHotel = () => {
     }
   };
 
-  const handleAddContactinfo = (e) => {
+  const handleContactInfoChange = (e) => {
+
+    const updatedContactInfo = newHotel.contactinfo.map(contact => contact.mode === e.target.name ? {mode: e.target.name, detail: e.target.value} : contact)
     setNewHotel({
       ...newHotel,
-      contactinfo: { ...newHotel.contactinfo, [e.target.name]: e.target.value },
+      contactinfo: updatedContactInfo,
     });
     console.log(newHotel);
   };
+
+    const handleSocialMediaChange = (e) => {
+      const updatedSocialMedia = newHotel.social_media.map((media) =>
+        media.platform === e.target.name
+          ? { platform: e.target.name, url: e.target.value }
+          : media
+      );
+      setNewHotel({
+        ...newHotel,
+        social_media: updatedSocialMedia,
+      });
+      console.log(newHotel);
+    };
 
     const handleAddSocialMedia = (e) => {
       setNewHotel({
@@ -129,7 +164,7 @@ const AddNewHotel = () => {
             Cancel
           </button>
           <button
-            type="submit"
+            onClick={handleAddHotel}
             className=" hover:ring-1 hover:ring-gray-400 btn-primary bg-gradient-to-r from-gray-700 to-gray-500"
           >
             Save
@@ -201,8 +236,38 @@ const AddNewHotel = () => {
           className="rounded-md p-2 border mr-2"
         />
       </form>
-      {/* Room Types Form */}
-      
+
+      <div id="hotelhighlightsContainer" className="flex flex-col gap-2">
+        <h2 className="text-xl font-semibold text-gray-800">Highlights</h2>
+        {newHotel.highlights.map((point, index) => {
+          return (
+            <input
+              key={index}
+              defaultValue={point}
+              className="rounded-md p-2 border mr-2"
+              placeholder={`Highlight Point`}
+              onChange={(e) => {
+                const updatedHighlights = newHotel.highlights.map((p, i) =>
+                  i === index ? e.target.value : p
+                );
+
+                setNewHotel({ ...newHotel, highlights: updatedHighlights });
+                console.log(newHotel);
+              }}
+            />
+          );
+        })}
+
+        {/* {addHighlight && <input placeholder="Highlight point" />} */}
+        <button
+          type="button"
+          onClick={handleAddHighlightField}
+          className="px-4 py-1 bg-gray-400 text-white self-start rounded-md mt-2"
+        >
+          +
+        </button>
+      </div>
+
       {/* Contact Info Form */}
       <div className="flex items-center gap-4 mt-8">
         <h2 className="text-xl font-semibold text-gray-800">Contact info</h2>
@@ -278,9 +343,9 @@ const AddNewHotel = () => {
           {showContactInfoTabs.call && (
             <div className="border rounded-md w-full flex items-center">
               <input
-                name="call"
-                defaultValue={newHotel.contactinfo.call}
-                onChange={handleAddContactinfo}
+                name={newHotel.contactinfo[0].mode}
+                defaultValue={newHotel.contactinfo[0].detail}
+                onChange={handleContactInfoChange}
                 className="p-2  w-full focus:outline-none"
                 placeholder="Call"
               />
@@ -291,9 +356,9 @@ const AddNewHotel = () => {
           {showContactInfoTabs.whatsapp && (
             <div className="border rounded-md w-full flex items-center">
               <input
-                name="whatsapp"
-                defaultValue={newHotel.contactinfo.whatsapp}
-                onChange={handleAddContactinfo}
+                name={newHotel.contactinfo[1].mode}
+                defaultValue={newHotel.contactinfo[1].detail}
+                onChange={handleContactInfoChange}
                 className="p-2  w-full focus:outline-none"
                 placeholder="WhatsApp"
               />
@@ -303,9 +368,9 @@ const AddNewHotel = () => {
           {showContactInfoTabs.email && (
             <div className="border rounded-md w-full flex items-center">
               <input
-                name="email"
-                defaultValue={newHotel.contactinfo.email}
-                onChange={handleAddContactinfo}
+                name={newHotel.contactinfo[2].mode}
+                defaultValue={newHotel.contactinfo[2].detail}
+                onChange={handleContactInfoChange}
                 className="p-2  w-full focus:outline-none"
                 placeholder="Email"
               />
@@ -315,9 +380,9 @@ const AddNewHotel = () => {
           {showContactInfoTabs.website && (
             <div className="border rounded-md w-full flex items-center">
               <input
-                name="website"
-                defaultValue={newHotel.contactinfo.website}
-                onChange={handleAddContactinfo}
+                name={newHotel.contactinfo[3].mode}
+                defaultValue={newHotel.contactinfo[3].detail}
+                onChange={handleContactInfoChange}
                 className="p-2  w-full"
                 placeholder="Website"
               />
@@ -402,9 +467,9 @@ const AddNewHotel = () => {
           {showSocialMediaTabs.facebook && (
             <div className="border rounded-md w-full flex items-center">
               <input
-                name="facebook"
-                defaultValue={newHotel.socialMedia.facebook}
-                onChange={handleAddSocialMedia}
+                name={newHotel.social_media[0].platform}
+                defaultValue={newHotel.social_media[0].url}
+                onChange={handleSocialMediaChange}
                 className="p-2  w-full focus:outline-none"
                 placeholder="Facebook"
               />
@@ -415,9 +480,9 @@ const AddNewHotel = () => {
           {showSocialMediaTabs.instagram && (
             <div className="border rounded-md w-full flex items-center">
               <input
-                name="instagram"
-                defaultValue={newHotel.socialMedia.instagram}
-                onChange={handleAddSocialMedia}
+                name={newHotel.social_media[1].platform}
+                defaultValue={newHotel.social_media[1].url}
+                onChange={handleSocialMediaChange}
                 className="p-2  w-full"
                 placeholder="Instagram"
               />
@@ -427,9 +492,9 @@ const AddNewHotel = () => {
           {showSocialMediaTabs.twitter && (
             <div className="border rounded-md w-full flex items-center">
               <input
-                name="twitter"
-                defaultValue={newHotel.socialMedia.twitter}
-                onChange={handleAddSocialMedia}
+                name={newHotel.social_media[2].platform}
+                defaultValue={newHotel.social_media[2].url}
+                onChange={handleSocialMediaChange}
                 className="p-2  w-full focus:outline-none"
                 placeholder="Twiiter/X"
               />
@@ -439,9 +504,9 @@ const AddNewHotel = () => {
           {showSocialMediaTabs.linkedin && (
             <div className="border rounded-md w-full flex items-center">
               <input
-                name="linkedin"
-                defaultValue={newHotel.socialMedia.linkedin}
-                onChange={handleAddSocialMedia}
+                name={newHotel.social_media[3].platform}
+                defaultValue={newHotel.social_media[3].url}
+                onChange={handleSocialMediaChange}
                 className="p-2  w-full focus:outline-none"
                 placeholder="LinkedIn"
               />

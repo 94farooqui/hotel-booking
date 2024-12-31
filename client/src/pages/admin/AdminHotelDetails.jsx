@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../../components/shared/Navbar";
 import { getHotelById } from "../../api/hotel";
 import HotelMap from "../../components/user/HotelMap";
@@ -11,6 +11,7 @@ import HotelContactInfo from "../../components/admin/HotelContactInfo";
 
 
 const AdminHotelDetails = () => {
+  const navigate = useNavigate()
   const { hotelId } = useParams();
   const [hotel, setHotel] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -43,19 +44,24 @@ const AdminHotelDetails = () => {
           <div>
             <div className="flex justify-between border-b pb-4">
               <h1 className="text-3xl font-bold">{hotel.name}</h1>
-              <button className="bg-gray-200 hover:bg-indigo-400  hover:text-white px-8 py-2 rounded-lg">
+              <button
+                onClick={() => navigate("edit")}
+                className="bg-gray-200 hover:bg-gradient-to-r from-gray-800 to-gray-700  hover:text-white px-8 py-2 rounded-lg"
+              >
                 Edit
               </button>
             </div>
             <div className="my-4 ">
-              <h3 className="text-xl font-semibold text-gray-700">Highlights</h3>
+              <h3 className="text-xl font-semibold text-gray-700">
+                Highlights
+              </h3>
               <ul className="grid grid-cols-2 mt-2 text-gray-600">
-                <li><span className="text-lg text-green-700 mr-2">+</span>3 Star Hotel</li>
-                <li><span className="text-lg text-green-700 mr-2">+</span>Parking</li>
-                <li><span className="text-lg text-green-700 mr-2">+</span>Indian/Chinese Food</li>
-                <li><span className="text-lg text-green-700 mr-2">+</span>Gym</li>
-                <li><span className="text-lg text-green-700 mr-2">+</span>5 kms to airport</li>
-                <li><span className="text-lg text-green-700 mr-2">+</span>3 Kms to city center</li>
+                {hotel.highlights.map((point, index) => (
+                  <li key={index}>
+                    <span className="text-lg text-green-700 mr-2">+</span>
+                    {point}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -64,7 +70,9 @@ const AdminHotelDetails = () => {
             <li
               onClick={() => setSelectedTab("info")}
               className={` cursor-pointer px-4 py-2  ${
-                selectedTab == "info" ? "bg-gradient-to-r from-gray-900 to-gray-800 text-white" : ""
+                selectedTab == "info"
+                  ? "bg-gradient-to-r from-gray-900 to-gray-800 text-white"
+                  : ""
               }`}
             >
               Details
@@ -72,7 +80,9 @@ const AdminHotelDetails = () => {
             <li
               onClick={() => setSelectedTab("room_types")}
               className={` cursor-pointer px-4 py-2  ${
-                selectedTab == "room_types" ? "bg-gradient-to-r from-gray-900 to-gray-800 text-white" : ""
+                selectedTab == "room_types"
+                  ? "bg-gradient-to-r from-gray-900 to-gray-800 text-white"
+                  : ""
               }`}
             >
               Rooms
@@ -80,7 +90,9 @@ const AdminHotelDetails = () => {
             <li
               onClick={() => setSelectedTab("photo_gallery")}
               className={` cursor-pointer px-4 py-2  ${
-                selectedTab == "photo_gallery" ? "bg-gradient-to-r from-gray-900 to-gray-800 text-white" : ""
+                selectedTab == "photo_gallery"
+                  ? "bg-gradient-to-r from-gray-900 to-gray-800 text-white"
+                  : ""
               }`}
             >
               Photo Gallery
@@ -88,7 +100,9 @@ const AdminHotelDetails = () => {
             <li
               onClick={() => setSelectedTab("social_media")}
               className={` cursor-pointer px-4 py-2  ${
-                selectedTab == "social_media" ? "bg-gradient-to-r from-gray-900 to-gray-800 text-white" : ""
+                selectedTab == "social_media"
+                  ? "bg-gradient-to-r from-gray-900 to-gray-800 text-white"
+                  : ""
               }`}
             >
               Social Media
@@ -96,7 +110,9 @@ const AdminHotelDetails = () => {
             <li
               onClick={() => setSelectedTab("contact")}
               className={` cursor-pointer px-4 py-2  ${
-                selectedTab == "contact" ? "bg-gradient-to-r from-gray-900 to-gray-800 text-white" : ""
+                selectedTab == "contact"
+                  ? "bg-gradient-to-r from-gray-900 to-gray-800 text-white"
+                  : ""
               }`}
             >
               Contact Info
@@ -106,8 +122,12 @@ const AdminHotelDetails = () => {
           {selectedTab == "info" && <HotelInfo hotel={hotel} />}
           {selectedTab == "room_types" && <HotelRoomTypes hotel={hotel} />}
           {selectedTab == "photo_gallery" && <HotelPhotos hotel={hotel} />}
-          {selectedTab == "social_media" && <HotelSocialMedia hotel={hotel} />}
-          {selectedTab == "contact" && <HotelContactInfo hotel={hotel} />}
+          {selectedTab == "social_media" && (
+            <HotelSocialMedia social_media={hotel.social_media} />
+          )}
+          {selectedTab == "contact" && (
+            <HotelContactInfo contact={hotel.contactinfo} />
+          )}
         </div>
       </main>
     </div>

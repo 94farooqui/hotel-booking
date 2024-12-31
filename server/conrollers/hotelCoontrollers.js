@@ -26,17 +26,20 @@ const getHotelById = async (req, res) => {
 // Add New Hotel (Admin Only)
 const addHotel = async (req, res) => {
   try {
-    console.log("Add hotel request received")
-    const { name, location, description, amenities, rating, coordinates } =
+    console.log("Add hotel request received", req.body)
+    const { name, location, description, amenities, rating, coordinates, highlights,contactinfo,social_media } =
       req.body;
 
     const hotel = await Hotel.create({
       name,
       location,
       description,
+      highlights,
       amenities,
       rating,
       coordinates,
+      contactinfo,
+      social_media,
     });
 
     res.status(201).json(hotel);
@@ -68,7 +71,7 @@ const deleteHotel = async (req, res) => {
     if (!hotel) {
       return res.status(404).json({ message: 'Hotel not found' });
     }
-    res.json({ message: 'Hotel deleted' });
+    res.status(200).json({ message: 'Hotel deleted' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 const API_BASE_URL = "http://localhost:5000/api";
 const token = localStorage.getItem("token");
 
@@ -31,8 +30,8 @@ export const addHotel = async (hotelData) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    if (response.status == 200 || response.status ==201) {
-      console.log("Response received" , response.status)
+    if (response.status == 200 || response.status == 201) {
+      console.log("Response received", response.status);
       return {
         response: true,
         mesage: "Successfully added",
@@ -49,16 +48,20 @@ export const addHotel = async (hotelData) => {
 
 export const updateHotel = async (hotelData) => {
   try {
-    const response = await axios.put(`${API_BASE_URL}/hotels/${hotelData._id}`, hotelData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    if (response.status == 200 || response.status ==201) {
-      console.log("Response received" , response)
+    const response = await axios.put(
+      `${API_BASE_URL}/hotels/${hotelData._id}`,
+      hotelData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (response.status == 200 || response.status == 201) {
+      console.log("Response received", response);
       return {
         response: true,
-        mesage: "Successfully added",
+        message: "Successfully updated",
         data: response.data,
       };
     } else {
@@ -70,4 +73,18 @@ export const updateHotel = async (hotelData) => {
   }
 };
 
-export const deleteHotel = () => {};
+export const deleteHotel = async (hotelId) => {
+  try {
+    const response = await axios.delete(`${API_BASE_URL}/hotels/${hotelId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (response.status == 200) {
+      return response.data;
+    }
+  } catch (error) {
+    console.error("Error fetching hotel details:", error);
+    throw error;
+  }
+};
