@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
+const path = require('path');
 
 const {protect} = require("./middleware/authMiddleware.js")
 const authRoutes = require('./routes/authRoutes');
@@ -9,12 +10,14 @@ const hotelRoutes = require('./routes/hotelRoutes');
 const roomRoutes = require('./routes/roomRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
 const dashboardRoutes = require('./routes/dashboardRoutes.js')
+const uploadRoutes = require('./routes/uploadRoutes.js')
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Connect Database
 connectDB();
@@ -35,6 +38,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/hotels', hotelRoutes);
 app.use('/api/rooms', roomRoutes);
 app.use('/api/bookings', bookingRoutes);
+app.use('/api/upload', uploadRoutes)
 
 // Routes Placeholder
 // app.use('/api/auth', require('./routes/authRoutes'));

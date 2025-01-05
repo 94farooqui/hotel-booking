@@ -121,7 +121,7 @@ const AdminHotelDetails = () => {
 
           {selectedTab == "info" && <HotelInfo hotel={hotel} />}
           {selectedTab == "room_types" && <HotelRoomTypes hotel={hotel} />}
-          {selectedTab == "photo_gallery" && <HotelPhotos hotel={hotel} />}
+          {selectedTab == "photo_gallery" && <HotelPhotos hotelId={hotelId} photos={hotel.photos} />}
           {selectedTab == "social_media" && (
             <HotelSocialMedia social_media={hotel.social_media} />
           )}

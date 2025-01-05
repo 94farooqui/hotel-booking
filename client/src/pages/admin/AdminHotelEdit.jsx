@@ -185,7 +185,7 @@ const AdminHotelEdit = () => {
           <div className="flex flex-col gap-2">
             <label
               className="font-semibold text-sm text-gray-800"
-              htmlFor="hotelDescription"
+              htmlFor="hotelDecdscription"
             >
               Description
             </label>
