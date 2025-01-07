@@ -8,7 +8,7 @@ import { IoMenu } from "react-icons/io5";
 import { FaRegUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout, loading } = useContext(AuthContext);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const menuRef = useRef();
   const [showCurrencyCountryModal, setShowCurrencyCountryModal] = useState();
@@ -24,6 +24,7 @@ const Navbar = () => {
     window.addEventListener("mousedown", handleOutsideClick);
     return () => window.removeEventListener("mousedown", handleOutsideClick);
   }, []);
+
   return (
     <div className="w-screen border-b bg-white">
       <nav className="w-[1000px] max-w-[1000px] mx-auto">

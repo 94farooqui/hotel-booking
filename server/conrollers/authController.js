@@ -11,6 +11,14 @@ const generateToken = (id,role) => {
   return token
 };
 
+const verifyToken = async (req, res) => {
+  console.log("Checking token validity", req.user)
+  if(req.user){
+    return res.status(200).json(req.user)
+  }
+  else return res.status(401).json({msg:"invalid token"})
+};
+
 // Register User
 const registerUser = async (req, res) => {
   const { name, email, password, role } = req.body;
@@ -64,4 +72,4 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser };
+module.exports = { registerUser, loginUser, verifyToken };

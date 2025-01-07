@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Navbar from "../components/shared/Navbar";
 import { getHotels } from "./../api/hotel";
 import HomeBanner from "../components/user/HomeBanner";
@@ -8,8 +8,15 @@ import LastMinuteDeals from "../components/user/LastMinuteDeals";
 import Footer from "../components/shared/Footer";
 import FavoriteStay from "../components/user/FavoriteStay";
 import PopularDestinations from "../components/user/PopularDestinations";
+import AuthContext from "../context/AuthContext";
 
 const Home = () => {
+
+  const {loading} = useContext(AuthContext)
+
+  if(loading){
+    return <p>loading...</p>
+  }
   return (
     <div>
       <Navbar />

@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const AuthContext = createContext();
 
@@ -9,13 +10,31 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("From Auth Context")
+    //console.log("From Auth Context")
+    const checkTokenValidity = async (token) => {
+      console.log("Checking token validity")
+      const isTokenValid = await axios.get("http://localhost:5000/api/auth/verifyToken" , {
+        headers:{
+          Authorization : `Bearer ${token}`
+        }
+      })
+
+      if(isTokenValid.status == 200){
+        console.log("Token is valid ",isTokenValid)
+        setLoading(false);
+        setUser(isTokenValid.data);
+      }
+      if(isTokenValid.status == 401){
+
+      }
+    }
     setLoading(true);
     const token = localStorage.getItem("token");
     if (token) {
-      const userData = JSON.parse(atob(token.split(".")[1])); // Decode JWT
-      setLoading(false);
-      setUser(userData);
+      
+      //const userData = JSON.parse(atob(token.split(".")[1])); // Decode JWT
+      checkTokenValidity(token)
+
     }
   }, []);
 
